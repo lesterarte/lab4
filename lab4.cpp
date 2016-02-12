@@ -146,5 +146,37 @@ void ataquewive(int*** cubo , int z,int size, int const){
 }//fin void 
 
 
+void coordenadas(int*** cubo,int size){
+
+	for(int i=0; i<size; i++){
+		for(int j=0; j<size; j++){
+			for(int k=0; k<size; k++){
+				
+				if(cubo[i][j][k]==1){
+					cout<<"("<<i<<","<<j<<","<<k<<")"<<endl; 
+				}	
+			}	
+		}	
+	} 
+	
+}
+
+int  subrestantes(int*** cubo,int size){
+	cint cont=0; 
+	for(int i=0; i<size;i++){
+		for(int j=0; j<size; j++){
+			for(int k=0; k<size; k++){
+				
+				if(cubo[i][j][k]==1){
+					cont++; 	
+				}		
+			}	
+		}	
+	}
+
+	return cont; 
+}
+
+
 
 

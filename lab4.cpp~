@@ -1,4 +1,4 @@
-#include<stdlib>
+#include<cstdlib>
 #include<iostream>
 using std::endl; 
 using std::cout; 
