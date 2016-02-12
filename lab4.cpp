@@ -217,4 +217,24 @@ void ataque_expansive(int*** cubo){
 
 
 
+void eliminar(int*** cubo,int size){
+
+	for(int i=0; i<size; i++){
+		for(int j=0; j<size; j++){
+			delete[] cubo[i][j];		
+		}	
+	}
+
+	for(int k=0; k<size; k++){
+		delete[] cubo[k]; 
+		
+	}
+
+	delete[] cubo; 
+
+	
+}
+
+
+
 
