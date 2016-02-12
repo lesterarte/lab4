@@ -1,33 +1,41 @@
 #include<cstdlib>
 #include<iostream>
+
 using std::endl; 
 using std::cout; 
 using std::cin; 
-void crearcubo();
-void ataque_expansive(int*** );
+void llenar(int***,int, int);
+void iniciarcubo(int***,int);
+void crearcubo(int***);
+void ataque_expansive(int***);
+void ataquenormal(int*** , int , int , int );
+void ataquewive(int***, int ,int, int);
+void coordenadas(int*** ,int );
+int  subrestantes(int*** ,int);
+void eliminar(int***,int);
 
 int main(int argc, char*argv[]){
-	int sub_jug1=15,sub_jug2=15;
-	int*** cub_j1=crearcubo();
-	int*** cub_j2=crearcubo();
+
+	int sub_jug1=15;
+	int sub_jug2=15;
+	int*** cub_j1;
+	int*** cub_j2;
+	crearcubo(cub_j1);
+	crearcubo(cub_j2);
 	int size=15;
 	srand(time(NULL)); 
+	eliminar(cub_j1,size);
+	eliminar(cub_j2,size);
+	return 0;
 
-
-
-
-
-
-
-
-
- 	return 0;		
+	
+			
 }
 
 
-void crearcubo(){
+void crearcubo(int*** cubo){
 	int size=12;
-	int*** cubo=new int** [size];
+	cubo=new int** [size];
 	for(int i=0;i<=size; i++){
 		cubo[i]=new int* [size];	
 	}
@@ -87,11 +95,11 @@ void ataquenormal(int*** cubo, int x, int y, int z){
 			
 }
 
-void ataquewive(int*** cubo , int z,int size, int const){
+void ataquewive(int*** cubo , int z,int size, int conste){
 
 	int cont=0; 
 	
-	if(const==1){	
+	if(conste==1){	
 	for(int i=0; i<size; i++){
 		for(int j=0; j<size; j++){
 			if(cubo[i][j][z] !=0){
@@ -112,7 +120,7 @@ void ataquewive(int*** cubo , int z,int size, int const){
 
 	}//fin if
 
-	if(const==2){	
+	if(conste==2){	
 	for(int i=0; i<size; i++){
 		for(int j=0; j<size; j++){
 			if(cubo[i][z][j] !=0){
@@ -133,7 +141,7 @@ void ataquewive(int*** cubo , int z,int size, int const){
 
 	}//fin if
 
-	if(const==3){	
+	if(conste==3){	
 	for(int i=0; i<size; i++){
 		for(int j=0; j<size; j++){
 			if(cubo[z][i][j] !=0){
@@ -174,7 +182,7 @@ void coordenadas(int*** cubo,int size){
 }
 
 int  subrestantes(int*** cubo,int size){
-	cint cont=0; 
+	int cont=0; 
 	for(int i=0; i<size;i++){
 		for(int j=0; j<size; j++){
 			for(int k=0; k<size; k++){
@@ -205,16 +213,33 @@ void ataque_expansive(int*** cubo){
 					if(cubo[i][j][k]==1){
 						cout<<"submarino destruido "<<cubo[i][j][k]<<cubo<<endl;			
 					}else if(cubo[i][j][k]==0){
-						cout<<"Nada que destruir"<<endl;				
+							cout<<"Nada que destruir"<<endl;				
 					 
-				}	
-			}		
+						}	
+				}		
+			}
 		}
+	
+	
 	}
-	
-	
+
 }
 
+void eliminar(int*** cubo,int size){
 
+	for(int i=0; i<size; i++){
+		for(int j=0; j<size; j++){
+			delete[] cubo[i][j];		
+		}	
+	}
 
+	for(int k=0; k<size; k++){
+		delete[] cubo[k]; 
+		
+	}
+
+	delete[] cubo; 
+
+	
+}
 
