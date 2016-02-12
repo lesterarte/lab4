@@ -1,0 +1,44 @@
+#include<iostream>
+#include<iostream>
+using std::endl; 
+using std::cout; 
+using std::cin; 
+
+
+int main(int argc, char*argv[]){
+		
+}
+
+
+void iniciarcubo(int*** cubo,int size){
+
+	for(int i=0; i<size; i++){
+		for(int j=0; i<size; j++){
+			for(int k=0; i<size; k++){
+				cubo[i][j][k]= 0;
+
+			}
+		}	
+	}
+	
+}
+
+
+
+ void llenar(int*** cubo,int size, int submarinos){
+
+	 while(submarinos !=0){
+
+		int i=rand()%size; 
+		int j=rand()%size; 
+		int k= rand()%size;  
+		 
+		if(cubo[i][j][k]== 0){
+
+			cubo[i][j][k]= 1; 		
+			submarinos--; 
+		}
+			     
+	}		 
+}
+
