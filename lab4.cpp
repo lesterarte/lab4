@@ -24,6 +24,133 @@ int main(int argc, char*argv[]){
 	crearcubo(cub_j2);
 	int size=15;
 	srand(time(NULL)); 
+	bool turn=true;
+	while(sub_jug1!=0 || sub_jug2!=0){
+		
+	  	if(turn==true){
+			int atq=0,cantWave=3,cant_espa=3;
+			coordenadas(cub_j1,size);
+			cout<<"*********Le quedan por destruir "<<sub_jug1<<"De su contrincante *******"<<endl;
+			cout<<"Elija su ataque \n"
+			    <<"1--Normal \n"
+			    <<"2--Wave \n"
+			    <<"3--Expansive \n"<<endl;
+			cin>>atq;
+
+			if(atq==1){
+				int x,y,z;
+				cout<<"Ingrese las coordenadas \n"<<endl
+				    <<"X ";
+		 		cin>>x;
+				cout<<"Y ";
+				cin>>y;
+				cout<<"Z ";
+				cin>>z; 
+				if((x >= 0 && x <=11) && (y >= 0 && y <= 11) && (z >= 0 && z <= 11)){
+					 ataquenormal(cub_j2,   x,   y,   z);
+					 turn==false;
+				}else{
+					cout<<"Pierde turno por movimientos invalidos"<<endl;
+					turn==false;	
+				}
+			}else if(atq==2){
+				int opWave=0;
+				int z;
+				
+				cout<<"Ingrese el tipo de Wave \n"<<endl;
+				cout<<"1-XY \n2-XZ\n3-YZ ";
+ 				cin>>opWave;
+				cout<<"Ingrese el numero de plano deseado"<<endl;
+				cin>>z;
+				if(cantWave<3){
+					ataquewive(cub_j2,z,size,opWave);
+					cantWave--;
+					turn==false;	
+				}else{
+					cout<<"Pierde turno porque no tiene mas waves"<<endl;
+					turn==false;
+				}
+
+ 			}else if(atq==3){
+				if(cant_espa<3){
+					ataque_expansive(cub_j2);
+					cant_espa--;
+					turn==false;
+				}else{
+					cout<<"Pierde turno porque no tiene mas espansives"<<endl;
+					turn==false;
+				}
+			
+			}
+
+
+	
+
+
+
+
+		}else if(turn==false){
+			int atq2=0,cantWave2=3,cant_espa2=3;
+			coordenadas(cub_j2,size);
+			cout<<"*********Le quedan por destruir "<<sub_jug1<<"De su contrincante *******"<<endl;
+			cout<<"Elija su ataque \n"
+			    <<"1--Normal \n"
+			    <<"2--Wave \n"
+			    <<"3--Expansive \n"<<endl;
+			cin>>atq2;
+
+			if(atq2==1){
+				int x,y,z;
+				cout<<"Ingrese las coordenadas \n"<<endl
+				    <<"X ";
+		 		cin>>x;
+				cout<<"Y ";
+				cin>>y;
+				cout<<"Z ";
+				cin>>z; 
+				if((x >= 0 && x <=11) && (y >= 0 && y <= 11) && (z >= 0 && z <= 11)){
+					 ataquenormal(cub_j1,   x,  y,  z);
+					 turn==true;
+				}else{
+					 cout<<"Pierde turno por movimientos invalidos"<<endl;
+					 turn==true;	
+				}
+			}else if(atq2==2){
+				int opWave=0;
+				int z;
+				
+				cout<<"Ingrese el tipo de Wave \n"<<endl;
+				cout<<"1-XY \n2-XZ\n3-YZ ";
+ 				cin>>opWave;
+				cout<<"Ingrese el numero de plano deseado"<<endl;
+				cin>>z;
+				if(cantWave2<3){
+					ataquewive(cub_j1,z,size,opWave);
+					cantWave2--;
+					turn==true;	
+				}else{
+					cout<<"Pierde turno porque no tiene mas waves"<<endl;
+					turn==true;
+				}
+
+ 			}else if(atq2==3){
+				if(cant_espa2<3){
+					ataque_expansive(cub_j1);
+					cant_espa2--;
+					turn==true;
+				}else{
+					cout<<"Pierde turno porque no tiene mas espansives"<<endl;
+					turn==true;
+				}
+			
+			}
+		}
+
+		
+
+	
+	}	
+
 	eliminar(cub_j1,size);
 	eliminar(cub_j2,size);
 	return 0;
